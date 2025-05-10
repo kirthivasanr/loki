@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" dir="ltr"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lokesh S - AutoCAD Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        
+        /* Default scrollbar will be used */
 
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -36,25 +36,21 @@
         .portfolio-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .portfolio-item .overlay-content {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            
-            color: white; opacity: 0; /* Hidden by default */
+            color: white; opacity: 0;
             transition: opacity 0.4s ease-in-out;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 0.5rem sm:padding-1rem; text-align: center;
+            padding: 0.5rem;
+            text-align: center;
         }
-        .portfolio-item .overlay-content h3 { font-size: 1rem; sm:font-size: 1.125rem; md:font-size:1.25rem; }
+        .portfolio-item .overlay-content h3 { font-size: 0.875rem; sm:font-size: 1rem; md:font-size:1.125rem; }
         .portfolio-item .overlay-content p { font-size: 0.75rem; sm:font-size: 0.875rem; }
 
-        /* Portfolio Hover Effect for DESKTOP (hover-capable devices) */
         @media (hover: hover) and (pointer: fine) {
             .portfolio-item:hover {
-                transform: scale(1.3); /* Large preview scale */
+                transform: scale(1.3);
                 z-index: 20;
                 box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
-                border-color: #F7B538; /* Accent border on hover */
-            }
-            .portfolio-item:hover .overlay-content {
-                opacity: 1; /* Show overlay on hover */
+                border-color: #F7B538;
             }
         }
 
@@ -70,12 +66,23 @@
         .connect-icon:hover { transform: scale(1.15); color: #F7B538; }
 
         .nav-links-container {
-            background-color: #F7B538; /* Solid Golden Yellow */
+            background-color: #F7B538;
         }
          #main-header.scrolled {
              background-color: rgba(0,0,0,0.75);
              backdrop-filter: blur(8px);
              -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* Specific styles for mobile hero text to prevent breaking */
+        @media (max-width: 639px) { /* Targets screens smaller than Tailwind 'sm' breakpoint */
+            #hero .animate-hero-title { /* Targeting the h1 inside hero */
+                word-break: break-word; /* Force break long words if necessary */
+                -webkit-hyphens: auto;  /* Enable hyphenation for WebKit browsers */
+                -ms-hyphens: auto;     /* Enable hyphenation for IE/Edge */
+                hyphens: auto;         /* Standard hyphenation */
+                text-align: center;    /* Ensure text remains centered if it wraps */
+            }
         }
     </style>
 </head>
@@ -108,20 +115,22 @@
     <main>
         <section id="hero" class="h-screen flex items-center justify-center relative overflow-hidden px-4">
             <div id="hero-canvas-container"></div>
-            <div class="content-overlay text-center p-6">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-hero-title text-slate-100">
+            <div class="content-overlay text-center p-4 sm:p-6">
+                <h1 class="text-lg sm:text-xl md:text-3xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 animate-hero-title text-slate-100 leading-tight sm:leading-snug">
                     <span class="letter">P</span><span class="letter">r</span><span class="letter">e</span><span class="letter">c</span><span class="letter">i</span><span class="letter">s</span><span class="letter">i</span><span class="letter">o</span><span class="letter">n</span>
                     <span class="letter">&nbsp;</span><span class="letter">i</span><span class="letter">n</span><span class="letter">&nbsp;</span>
                     <span class="letter">E</span><span class="letter">v</span><span class="letter">e</span><span class="letter">r</span><span class="letter">y</span><span class="letter">&nbsp;</span>
                     <span class="letter">L</span><span class="letter">i</span><span class="letter">n</span><span class="letter">e</span><span class="letter">.</span>
-                    <br class="hidden md:block">
+                    <br> 
                     <span class="letter">C</span><span class="letter">r</span><span class="letter">e</span><span class="letter">a</span><span class="letter">t</span><span class="letter">i</span><span class="letter">v</span><span class="letter">i</span><span class="letter">t</span><span class="letter">y</span>
                     <span class="letter">&nbsp;</span><span class="letter">i</span><span class="letter">n</span><span class="letter">&nbsp;</span>
                     <span class="letter">E</span><span class="letter">v</span><span class="letter">e</span><span class="letter">r</span><span class="letter">y</span><span class="letter">&nbsp;</span>
                     <span class="letter">D</span><span class="letter">e</span><span class="letter">s</span><span class="letter">i</span><span class="letter">g</span><span class="letter">n</span><span class="letter">.</span>
                 </h1>
-                <p class="text-base sm:text-lg md:text-xl text-slate-300 mb-12 animate-hero-subtitle">[AutoCAD Designer | Transforming Ideas into Technical Realities]</p>
-                <a href="#portfolio" class="accent-bg text-black font-bold py-3 px-6 sm:px-8 rounded-lg hover:bg-yellow-500 hover:shadow-lg transition-all duration-300 text-md sm:text-lg animate-hero-button shadow-md hover:shadow-accent/50 mt-8 sm:mt-10">
+                <p class="text-xs sm:text-sm md:text-base text-slate-300 mb-8 sm:mb-12 animate-hero-subtitle">
+                    AutoCAD Designer | Transforming Ideas into Technical Realities
+                </p>
+                <a href="#portfolio" class="accent-bg text-black font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg hover:bg-yellow-500 hover:shadow-lg transition-all duration-300 text-xs sm:text-sm md:text-md animate-hero-button shadow-md hover:shadow-accent/50 mt-6 sm:mt-8">
                     Explore My Work
                 </a>
             </div>
@@ -131,7 +140,7 @@
             <div class="container mx-auto max-w-3xl text-center">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 accent-color">Meet Lokesh S</h2>
                 <div class="relative w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-accent shadow-xl">
-                    <img src="./profile.jpeg" alt="[Designer Name]" class="w-full h-full object-cover">
+                    <img src="./profile.jpeg" alt="Lokesh S" class="w-full h-full object-cover">
                 </div>
                 <p class="text-sm sm:text-md md:text-lg text-slate-300 mb-4 leading-relaxed">
                     Welcome. I'm Lokesh S, a 3rd-year Electronics and Communication Engineering student at SRM Institute of Science and Technology, Ramapuram. While pursuing a strong academic record in ECE, my passion extends into the world of technical design, where precision meets creativity.
@@ -145,54 +154,45 @@
         <section id="portfolio" class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 animated-section">
             <div class="container mx-auto">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 sm:mb-12 md:mb-16 text-center accent-color">Designs Showcase</h2>
-                <!-- Erroneous HTML comment removed from here -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-14">
                     <div class="portfolio-item rounded-lg h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img src="./AUTOCAD PHOTO/android.png" alt="[Project Title 1]" >
+                        <img src="./AUTOCAD PHOTO/android.png" alt="Android Logo Design" >
                         <div class="overlay-content">
-                            
                         </div>
                     </div>
                     <div class="portfolio-item rounded-lg h-56 sm:h-64 md:h-72 overflow-hidden">
-                         <img src="./AUTOCAD PHOTO/benz.png" alt="[Project Title 2]">
+                         <img src="./AUTOCAD PHOTO/benz.png" alt="Benz Logo Design">
                         <div class="overlay-content">
-                            
                         </div>
                     </div>
                     <div class="portfolio-item rounded-lg h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img src="./AUTOCAD PHOTO/bulp.png" alt="[Project Title 3]">
+                        <img src="./AUTOCAD PHOTO/bulp.png" alt="Light Bulb Design">
                         <div class="overlay-content">
-                            
                         </div>
                     </div>
                     <div class="portfolio-item rounded-lg h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img src="./AUTOCAD PHOTO/iron man.png" alt="[Project Title 4]">
+                        <img src="./AUTOCAD PHOTO/iron man.png" alt="Iron Man Design">
                         <div class="overlay-content">
-                            
                         </div>
                     </div>
                      <div class="portfolio-item rounded-lg h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img src="./AUTOCAD PHOTO/knife.png" alt="[Project Title 5]">
+                        <img src="./AUTOCAD PHOTO/knife.png" alt="Knife Design">
                         <div class="overlay-content">
-                           
                         </div>
                     </div>
                      <div class="portfolio-item rounded-lg h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img src="./AUTOCAD PHOTO/ninja 2.png" alt="[Project Title 6]">
+                        <img src="./AUTOCAD PHOTO/ninja 2.png" alt="Ninja Star Design 2">
                         <div class="overlay-content">
-                           
                         </div>
                     </div>
                     <div class="portfolio-item rounded-lg h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img src="./AUTOCAD PHOTO/volw.png" alt="[Project Title 6]">
+                        <img src="./AUTOCAD PHOTO/volw.png" alt="Volkswagen Logo Design">
                         <div class="overlay-content">
-                           
                         </div>
                     </div>
                     <div class="portfolio-item rounded-lg h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img src="./AUTOCAD PHOTO/ninja.png" alt="[Project Title 6]">
+                        <img src="./AUTOCAD PHOTO/ninja.png" alt="Ninja Star Design">
                         <div class="overlay-content">
-                           
                         </div>
                     </div>
                 </div>
@@ -245,7 +245,7 @@
                     <a href="https://www.linkedin.com/in/lokesh-s-02164a32a/" target="_blank" rel="noopener noreferrer" class="text-slate-400 connect-icon" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     </a>
-                    <a href="mailto:[lokeshsrm63@gmail.com]" class="text-slate-400 connect-icon" aria-label="Email">
+                    <a href="mailto:lokeshsrm63@gmail.com" class="text-slate-400 connect-icon" aria-label="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
                     </a>
                     <a href="https://x.com/lokeshs1642591?s=21" target="_blank" rel="noopener noreferrer" class="text-slate-400 connect-icon" aria-label="Twitter">
@@ -351,6 +351,11 @@
             let scene, camera, renderer, shape;
             const container = document.getElementById('hero-canvas-container');
 
+            const mobileAnimSpeedX = 0.0008;
+            const mobileAnimSpeedY = 0.0012;
+            const desktopAnimSpeedX = 0.0002;
+            const desktopAnimSpeedY = 0.0003;
+
             function initThree() {
                 if (!container) return;
                 scene = new THREE.Scene();
@@ -361,9 +366,9 @@
                 renderer.setPixelRatio(window.devicePixelRatio);
                 container.appendChild(renderer.domElement);
 
-                const geometry = new THREE.TorusKnotGeometry(1, 0.25, 120, 12);
+                const geometry = new THREE.TorusKnotGeometry(1, 0.25, 100, 10);
                 const material = new THREE.MeshStandardMaterial({
-                    color: 0xF7B538, // Accent Color
+                    color: 0xF7B538,
                     wireframe: true, roughness: 0.4, metalness: 0.6
                 });
                 shape = new THREE.Mesh(geometry, material);
@@ -382,16 +387,36 @@
             const windowHalfY = window.innerHeight / 2;
 
             function onDocumentMouseMove(event) {
-                mouseX = (event.clientX - windowHalfX) * 0.0001;
-                mouseY = (event.clientY - windowHalfY) * 0.0001;
+                if (!("ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)) {
+                    mouseX = (event.clientX - windowHalfX) * 0.0001;
+                    mouseY = (event.clientY - windowHalfY) * 0.0001;
+                } else {
+                    mouseX = 0;
+                    mouseY = 0;
+                }
             }
             document.addEventListener('mousemove', onDocumentMouseMove, false);
 
             function animateThree() {
                 if (!renderer) return;
                 requestAnimationFrame(animateThree);
-                shape.rotation.x += 0.0002 + mouseY * 0.1;
-                shape.rotation.y += 0.0003 + mouseX * 0.1;
+
+                const isMobile = window.innerWidth < 768;
+
+                const currentSpeedX = isMobile ? mobileAnimSpeedX : desktopAnimSpeedX;
+                const currentSpeedY = isMobile ? mobileAnimSpeedY : desktopAnimSpeedY;
+
+                let influenceX = mouseX * 0.1;
+                let influenceY = mouseY * 0.1;
+
+                if (isMobile) {
+                    influenceX = 0;
+                    influenceY = 0;
+                }
+
+                shape.rotation.x += currentSpeedX + influenceY;
+                shape.rotation.y += currentSpeedY + influenceX;
+
                 renderer.render(scene, camera);
             }
 
